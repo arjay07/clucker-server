@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_HOST}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+
+app:
+  allow-all-get:
+    - "/health"
+    - "/users/available-usernames"
+    - "/users/*/clucks"
+    - "/clucks/**"
+    - "/users"
+    - "/clucks"
+    - "/users/**"
+    - "/version"
+    - "/feed/discover"
+  allow-all-post:
+    - "/users"
+  cors:
+    app-url: ${APP_URL}
+  security:
+    jwt-secret-key: ${JWT_SECRET_KEY}
+  version: '0.1.2'
