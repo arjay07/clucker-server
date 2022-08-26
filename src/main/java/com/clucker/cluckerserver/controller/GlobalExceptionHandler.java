@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ValidationErrorResponse> handleValidationError(MethodArgumentNotValidException exception) {
         log.error(exception.getMessage());
         List<String> fieldErrors = exception.getFieldErrors().stream()
-                .map(FieldError::getDefaultMessage)
+                .map(err -> String.format("%s %s", err.getField(), err.getDefaultMessage()))
                 .collect(Collectors.toList());
         ValidationErrorResponse response = new ValidationErrorResponse();
         response.setErrors(fieldErrors);
