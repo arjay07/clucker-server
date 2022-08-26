@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 public class AppProperties {
 
     private String version;
+    private String[] allowedOrigins;
     private String[] allowAllPost;
     private String[] allowAllGet;
     private String[] allowAllPut;

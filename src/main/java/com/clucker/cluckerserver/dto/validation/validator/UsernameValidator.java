@@ -7,7 +7,7 @@ import javax.validation.ConstraintValidatorContext;
 
 public class UsernameValidator implements ConstraintValidator<ValidUsername, String> {
 
-    private final static String USERNAME_REGEX = "^[A-Za-z0-9_]+$";
+    private final static String USERNAME_REGEX = "^[A-Za-z0-9_.]+$";
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
