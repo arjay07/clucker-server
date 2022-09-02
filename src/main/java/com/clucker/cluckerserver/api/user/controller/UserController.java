@@ -52,6 +52,13 @@ public class UserController {
                 .mapToResponse(userService.getUserById(id));
     }
 
+    @GetMapping("/username/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public UserResponse getUserByUsername(@PathVariable String username) {
+        return userService
+                .mapToResponse(userService.getUserByUsername(username));
+    }
+
     @GetMapping("/available-usernames")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> checkAvailableUsername(@RequestParam String username) {
