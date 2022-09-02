@@ -25,7 +25,7 @@ public class FeedController {
     public Page<CluckResponse> getPersonalFeed(Authentication authentication,
                                                @PageableDefault(
                                                        sort = {"posted"},
-                                                       direction = Sort.Direction.ASC
+                                                       direction = Sort.Direction.DESC
                                                )
                                                Pageable pageable) {
         return feedService.getPersonalFeed(authentication, pageable).map(cluckService::mapToResponse);
