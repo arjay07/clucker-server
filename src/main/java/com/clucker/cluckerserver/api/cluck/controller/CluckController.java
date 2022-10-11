@@ -84,7 +84,7 @@ public class CluckController {
 
     @GetMapping("/{cluckId}/comments")
     public Page<CommentResponse> getComments(@PathVariable String cluckId, Pageable pageable) {
-        return commentService.getAllComments(cluckId, pageable).map(commentService::mapToResponse);
+        return commentService.getCommentsByCluckId(cluckId, pageable).map(commentService::mapToResponse);
     }
 
     @PutMapping("/{cluckId}/rating")

@@ -57,9 +57,8 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
-    public Page<Comment> getAllComments(String cluckId, Pageable pageable) {
-        UUID uuid = UUID.fromString(cluckId);
-        return commentRepository.findCommentsByCluckId(uuid, pageable);
+    public Page<Comment> getAllComments(Pageable pageable) {
+        return commentRepository.findAll(pageable);
     }
 
     public CommentResponse mapToResponse(Comment comment) {

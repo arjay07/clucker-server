@@ -116,8 +116,8 @@ public class CluckService {
         Cluck cluck = getCluckById(cluckId);
         User user = userService.getUserByUsername(getUsername(authentication));
 
-        if (cluck.getDislikeUsers().remove(user) &&
-                user.getDislikedClucks().remove(cluck)) {
+        if (cluck.getLikeUsers().remove(user) &&
+                user.getLikedClucks().remove(cluck)) {
             userService.saveUser(user);
             return saveCluck(cluck);
         }
