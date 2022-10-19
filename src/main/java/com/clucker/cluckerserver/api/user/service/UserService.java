@@ -115,6 +115,9 @@ public class UserService {
         if (StringUtils.isNotBlank(updateRequest.getEmail()))
             user.setEmail(updateRequest.getEmail());
 
+        if (StringUtils.isNotBlank(updateRequest.getBio()))
+            user.setBio(updateRequest.getBio());
+
         repository.save(user);
 
     }
