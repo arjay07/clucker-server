@@ -32,6 +32,6 @@ app:
     app-url: ${APP_URL}
   security:
     jwt-secret-key: ${JWT_SECRET_KEY}
-  version: '0.1.2'
+  version: '0.1.5'
   allowed-origins:
     - ${APP_URL}
