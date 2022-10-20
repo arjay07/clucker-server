@@ -41,7 +41,7 @@ public class Comment {
     private UUID id;
 
     @NotNull
-    @ValidCluck(message = "Comment cannot succeed 6 words.")
+    @ValidCluck(message = "Comment cannot exceed 6 words.")
     private String body;
 
     @ManyToOne(optional = false)
