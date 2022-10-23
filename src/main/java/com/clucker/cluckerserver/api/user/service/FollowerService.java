@@ -46,6 +46,10 @@ public class FollowerService {
         if (user.getFollowing() == null)
             user.setFollowing(new ArrayList<>());
 
+        if (user.getFollowers().contains(user)) {
+            throw new BadRequestException(String.format("%s is already following %s", principal, username));
+        }
+
         userToFollow.getFollowers().add(user);
         user.getFollowing().add(userToFollow);
 
