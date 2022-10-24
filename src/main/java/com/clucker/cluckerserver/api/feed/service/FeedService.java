@@ -40,12 +40,12 @@ public class FeedService {
 
         User user = userService.getUserByUsername(username);
         List<User> authors = new ArrayList<>(user.getFollowing());
-        authors.add(user);
 
         return cluckRepository.findClucksByAuthorIn(authors, pageable);
 
     }
 
+    @PreAuthorize("hasRole('CLUCKER')")
     public Page<Cluck> getDiscoverFeed(Pageable pageable) {
         return cluckRepository.findAll(pageable);
     }
