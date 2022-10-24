@@ -17,8 +17,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,21 +40,23 @@ public class FeedService {
 
         User user = userService.getUserByUsername(username);
         List<User> authors = new ArrayList<>(user.getFollowing());
-        authors.add(user);
 
         return cluckRepository.findClucksByAuthorIn(authors, pageable);
 
     }
 
+    @PreAuthorize("hasRole('CLUCKER')")
     public Page<Cluck> getDiscoverFeed(Pageable pageable) {
+        return cluckRepository.findAll(pageable);
+    }
+
+    private Page<Cluck> getTopClucksFromTopCluckers(Pageable pageable) {
         int minUserSize = (int) Math.min(userRepository.count(), 10L);
         List<User> topTenCluckersEggRating = getTopCluckersByEggRating(minUserSize);
         List<User> topTenCluckersFollowers = getTopCluckersByFollowers(minUserSize);
-        List<User> topCluckers = new ArrayList<>(topTenCluckersEggRating);
+        Set<User> topCluckers = new HashSet<>(topTenCluckersEggRating);
         topCluckers.addAll(topTenCluckersFollowers);
-        AuthorSpecification authorSpecification = new AuthorSpecification(topCluckers);
-
-        return null;
+        return cluckRepository.findClucksByAuthorIn(topCluckers, pageable);
     }
 
     private List<User> getTopCluckersByFollowers(int size) {
