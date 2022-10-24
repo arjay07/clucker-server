@@ -22,4 +22,9 @@ public class UserController {
         return cluckService.getClucksByAuthor(id, pageable).map(cluckService::mapToResponse);
     }
 
+    @GetMapping("/{id}/clucks/liked")
+    public Page<CluckResponse> getLikedClucksByUserId(@PathVariable int id, Pageable pageable) {
+        return cluckService.getLikedClucksByUserId(id, pageable).map(cluckService::mapToResponse);
+    }
+
 }

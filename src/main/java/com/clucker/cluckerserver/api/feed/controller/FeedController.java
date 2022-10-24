@@ -31,4 +31,14 @@ public class FeedController {
         return feedService.getPersonalFeed(authentication, pageable).map(cluckService::mapToResponse);
     }
 
+    @GetMapping("/discover")
+    public Page<CluckResponse> getDiscoverFeed(Authentication authentication,
+                                               @PageableDefault(
+                                                       sort = {"posted"},
+                                                       direction = Sort.Direction.DESC
+                                               )
+                                               Pageable pageable) {
+        return feedService.getDiscoverFeed(pageable).map(cluckService::mapToResponse);
+    }
+
 }
