@@ -22,6 +22,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.UUID;
@@ -49,6 +50,14 @@ public class CluckService {
             throw new UserNotFoundException();
 
         return cluckRepository.getAllByAuthorId(id, pageable);
+    }
+
+    @PreAuthorize("permitAll()")
+    public Page<Cluck> getLikedClucksByUserId(int id, Pageable pageable) {
+        if (!userService.userExists(id))
+            throw new UserNotFoundException();
+
+        return cluckRepository.findLikedClucksByUserId(id, pageable);
     }
 
     public Page<Cluck> getClucks(Pageable pageable, String search) {

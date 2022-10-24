@@ -99,16 +99,16 @@ public class User {
     @JsonIgnore
     @ManyToMany
     @JoinTable(
-            joinColumns = @JoinColumn(name = "cluck_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "cluck_id")
     )
     private Set<Cluck> likedClucks = Collections.emptySet();
 
     @JsonIgnore
     @ManyToMany
     @JoinTable(
-            joinColumns = @JoinColumn(name = "cluck_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "cluck_id")
     )
     private Set<Cluck> dislikedClucks = Collections.emptySet();
 
