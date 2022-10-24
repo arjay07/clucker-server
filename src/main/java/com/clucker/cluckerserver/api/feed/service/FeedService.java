@@ -40,9 +40,7 @@ public class FeedService {
         List<User> authors = new ArrayList<>(user.getFollowing());
         authors.add(user);
 
-        AuthorSpecification spec = new AuthorSpecification(authors);
-
-        return cluckRepository.findAll(spec, pageable);
+        return cluckRepository.findClucksByAuthorIn(authors, pageable);
 
     }
 

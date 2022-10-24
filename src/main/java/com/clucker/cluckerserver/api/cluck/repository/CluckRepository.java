@@ -8,12 +8,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
 
 @Repository
 public interface CluckRepository extends JpaRepositoryWithSpecification<Cluck, UUID> {
     Page<Cluck> getAllByAuthorId(int id, Pageable pageable);
+    Page<Cluck> findClucksByAuthorIn(Collection<User> authors, Pageable pageable);
 
     @Query(value = "SELECT * FROM cluck c " +
                     "INNER JOIN user_liked_clucks lc ON lc.cluck_id = c.id " +
